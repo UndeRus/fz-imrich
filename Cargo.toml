@@ -1,0 +1,30 @@
+cargo-features = ["different-binary-name"]
+
+[package]
+name = "imrich"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.64.0"
+autobins = false
+autoexamples = false
+autotests = false
+autobenches = false
+
+[[bin]]
+name = "imrich"
+filename = "imrich.fap"
+bench = false
+test = false
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[dependencies]
+flipperzero = { git = "https://github.com/flipperzero-rs/flipperzero.git", features = ["alloc"] }
+flipperzero-alloc = { git = "https://github.com/flipperzero-rs/flipperzero.git" }
+flipperzero-sys = { git = "https://github.com/flipperzero-rs/flipperzero.git"}
+flipperzero-rt = { git = "https://github.com/flipperzero-rs/flipperzero.git"}
